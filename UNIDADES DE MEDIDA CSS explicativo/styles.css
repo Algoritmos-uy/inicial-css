@@ -1,35 +1,189 @@
+/* ========================================
+   RESET Y CONFIGURACIÓN BASE
+   ======================================== */
+
+/* 
+ * Selector universal (*): Aplica estilos a TODOS los elementos
+ * - box-sizing: border-box → Incluye padding y border en el ancho/alto total
+ * - margin y padding: 0 → Elimina espaciados predeterminados del navegador
+ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ========================================
+   ESTILOS DEL BODY (CONTENEDOR PRINCIPAL)
+   ======================================== */
+
+/* 
+ * Configuración del contenedor principal usando Flexbox
+ * - display: flex → Activa el modelo de diseño flexible
+ * - flex-direction: column → Apila los elementos verticalmente
+ * - gap: 10px → Espacio entre elementos hijos (unidad absoluta en píxeles)
+ */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-  }
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  gap: 10px;
+}
 
-  .box {
-    background-color: #007BFF;
-    color: white;
-    text-align: center;
-    margin-bottom: 10px;
-  }
+/* ========================================
+   ESTILOS BASE PARA TODAS LAS CAJAS
+   ======================================== */
 
-  .pixels {
-    width: 200px;
-    height: 100px;
-  }
+/* 
+ * Clase .box: Estilos comunes para todos los ejemplos
+ * Estos estilos se heredan en todas las cajas de demostración
+ */
+.box {
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  margin-bottom: 10px;
+}
 
-  .percentage {
-    width: 50%;
-    height: 100px;
-  }
+/* ========================================
+   UNIDADES ABSOLUTAS - PÍXELES (px)
+   ======================================== */
 
-  .viewport {
-    width: 50vw;
-    height: 10vh;
-  }
+/* 
+ * PÍXELES (px): Unidad ABSOLUTA más común
+ * 
+ * CARACTERÍSTICAS:
+ * - Tamaño fijo que NO cambia
+ * - 1px = un punto en la pantalla
+ * - NO se adapta al tamaño de la pantalla ni a preferencias del usuario
+ * 
+ * CUÁNDO USAR:
+ * ✓ Bordes, sombras, elementos pequeños
+ * ✓ Cuando necesitas control exacto del tamaño
+ * 
+ * CUÁNDO EVITAR:
+ * ✗ Diseños responsivos
+ * ✗ Tipografía (mejor usar rem/em)
+ */
+.pixels {
+  width: 200px; /* Ancho fijo de 200 píxeles */
+  height: 100px; /* Alto fijo de 100 píxeles */
+}
 
-  .rem {
-    font-size: 1.5rem;
-  }
+/* ========================================
+   UNIDADES RELATIVAS - PORCENTAJE (%)
+   ======================================== */
 
-  .em {
-    font-size: 1.2em;
-  }
+/* 
+ * PORCENTAJE (%): Unidad RELATIVA al elemento padre
+ * 
+ * CARACTERÍSTICAS:
+ * - Se calcula en base al tamaño del contenedor padre
+ * - width: 50% = la mitad del ancho del padre
+ * - Cambia automáticamente si el padre cambia de tamaño
+ * 
+ * CUÁNDO USAR:
+ * ✓ Layouts fluidos y responsivos
+ * ✓ Columnas que se adaptan al contenedor
+ * ✓ Elementos que deben ocupar una fracción del espacio disponible
+ * 
+ * EJEMPLO:
+ * Si el body tiene 1000px de ancho, este elemento tendrá 500px
+ * Si redimensionas la ventana, el elemento se ajusta automáticamente
+ */
+.percentage {
+  width: 50%; /* 50% del ancho del elemento padre (body) */
+  height: 100px; /* Alto fijo en píxeles */
+}
+
+/* ========================================
+   UNIDADES RELATIVAS - VIEWPORT (vw, vh)
+   ======================================== */
+
+/* 
+ * VIEWPORT WIDTH (vw) y VIEWPORT HEIGHT (vh): Relativas al tamaño de la ventana
+ * 
+ * CARACTERÍSTICAS:
+ * - 1vw = 1% del ancho de la ventana del navegador
+ * - 1vh = 1% del alto de la ventana del navegador
+ * - 100vw = ancho completo de la ventana
+ * - 100vh = alto completo de la ventana
+ * - Se ajustan automáticamente al redimensionar la ventana
+ * 
+ * CUÁNDO USAR:
+ * ✓ Secciones a pantalla completa
+ * ✓ Elementos que deben adaptarse al tamaño de la ventana
+ * ✓ Diseños responsivos sin media queries
+ * 
+ * EJEMPLO:
+ * En una pantalla de 1920px de ancho: 50vw = 960px
+ * En una pantalla de 1280px de ancho: 50vw = 640px
+ */
+.viewport {
+  width: 50vw; /* 50% del ancho de la ventana del navegador */
+  height: 10vh; /* 10% del alto de la ventana del navegador */
+}
+
+/* ========================================
+   UNIDADES RELATIVAS - REM (Root EM)
+   ======================================== */
+
+/* 
+ * REM (Root Em): Relativa al tamaño de fuente del elemento RAÍZ (html)
+ * 
+ * CARACTERÍSTICAS:
+ * - Siempre se basa en el tamaño de fuente del elemento <html>
+ * - Por defecto: 1rem = 16px (tamaño base del navegador)
+ * - NO hereda del elemento padre, siempre del elemento raíz
+ * - Predecible y consistente en toda la página
+ * 
+ * CUÁNDO USAR:
+ * ✓ Tamaños de fuente (RECOMENDADO)
+ * ✓ Espaciados (margin, padding)
+ * ✓ Cuando quieres consistencia en todo el sitio
+ * ✓ Mejor opción para accesibilidad (respeta preferencias del usuario)
+ * 
+ * CÁLCULO:
+ * Si el tamaño base es 16px:
+ * - 1rem = 16px
+ * - 1.5rem = 24px
+ * - 2rem = 32px
+ */
+.rem {
+  font-size: 1.5rem; /* 1.5 × 16px = 24px (si el tamaño base es 16px) */
+}
+
+/* ========================================
+   UNIDADES RELATIVAS - EM
+   ======================================== */
+
+/* 
+ * EM: Relativa al tamaño de fuente del elemento PADRE
+ * 
+ * CARACTERÍSTICAS:
+ * - Se basa en el font-size del elemento padre directo
+ * - Puede crear efectos en cascada (herencia multiplicativa)
+ * - Más difícil de predecir que rem en estructuras complejas
+ * 
+ * CUÁNDO USAR:
+ * ✓ Componentes que deben escalar proporcionalmente
+ * ✓ Padding/margin relativos al tamaño de fuente del elemento
+ * ✓ Cuando quieres que los elementos hijos escalen con el padre
+ * 
+ * DIFERENCIA CON REM:
+ * - rem → siempre relativo a <html>
+ * - em → relativo al padre inmediato
+ * 
+ * EJEMPLO:
+ * Si el body tiene font-size: 16px:
+ * - 1.2em = 1.2 × 16px = 19.2px
+ * 
+ * PRECAUCIÓN:
+ * Si anidas elementos con em, se multiplican:
+ * Padre: 1.5em (24px) → Hijo: 1.2em = 1.2 × 24px = 28.8px
+ */
+.em {
+  font-size: 1.2em; /* 1.2 × tamaño de fuente del padre (body) */
+}

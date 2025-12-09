@@ -1,3 +1,10 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
 .container {
     width: 70%;
     height: 100vh;
@@ -10,7 +17,7 @@
     flex-direction: column;
     align-items: center;
     background-color: rgb(146, 146, 146);
-    /*background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3) 100%), url("./bg-code.png");*
+    /*background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3) 100%), url("./bg-code.png");*/
     background-size: cover;
     /*background-image: url(./bg-code.png);*/
     z-index: -1;
@@ -46,8 +53,7 @@ p {
 }
 
 img:hover {
-    transform: scale(1.1);
+    transform: scale(1.4) rotateZ(60deg);
     transition: transform 0.5s;
-    transform: rotateX(60deg);
     transform-style: preserve-3d;
 }
